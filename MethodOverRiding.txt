@@ -1,0 +1,30 @@
+class Animal {
+void eating() {
+     System.out.println("eating() method of base class");
+     System.out.println("Animal is eating.");
+    }
+}
+
+class Dog extends Animal {
+@Override
+void eating() {
+        System.out.println("eating() method of derived class");
+        System.out.println("Dog is eating.");
+    }
+//making the function
+void eatAsAnimal() {
+super.eating();
+}
+    
+public class Demo{
+public static void main(String[] args){
+Dog d1 = new Dog();
+d1.eating();
+
+
+Animal a1 = new Animal();
+a1.eating();
+
+
+}
+}
