@@ -1,0 +1,92 @@
+#Problem-1 School Results Application
+---(Class diagram)---
+
++------------------+
+| Student(Main class) |
++------------------+
+| - studentID      |
+| - StudentName    |
+| - subjects: List<Subject> |
++------------------+
+| + addSubject()   |
+| + getSubjects()  |
+| + getTotalScore()|
+| + getGrade()     |
++------------------+
+        |
+        | Aggregation (multiple subjects entries)
+        v
++------------------+
+|     Subject      |
++------------------+
+| - subjectName    |
+| - Subject Score   |
++------------------+
+| + getScore()     |
+| + getSubjectName() |
++------------------+
+
+        |
+        | Uses
+        v
++------------------------+
+|    GradeCalculator     |
++------------------------+
+| + calculateGrade()     |
+| + calculateTotal()     |
++------------------------+
+
+
+---(Object diagram)---
+
+
+
++---------------------+
+| Student: Krishna  |
+| studentID = 101    |
+| subjects = {Maths, Science} |
++---------------------+
+        |
+        | Has
+        v
++----------------------+
+| Subject: Maths       |
+| subjectName = "Maths"|
+| score = 85
+         |
++----------------------+
+
++----------------------+
+| Subject: Science    |
+| subjectName = "Science"|
+| score = 90          |
++----------------------+
+
+        |
+        | Uses
+        v
++--------------------------+
+| GradeCalculator         |
+| Total Score = 175       |
+| Grade = "A"            |
++--------------------------+
+
+
+
+
+---Sequence diagram---
+
+Student       Student Object       Subject Object(s)       GradeCalculator  
+   |                 |                     |                      |  
+   |--- requestGrade() --->|                     |                      |  
+   |                 |--- getScores() --->|                      |  
+   |                 |<--- return scores --|                      |  
+   |                 |-----------------------> calculateTotal() --->|  
+   |                 |<--- totalScore ---------|  
+   |                 |-----------------------> calculateGrade() --->|  
+   |                 |<--- return grade -------|  
+   |<-- displayGrade() --|  
+
+
+
+

@@ -1,0 +1,90 @@
+#Sample Problem 2: Grocery Store Bill Generation Application
+---Class diagram---
+
+
++------------------+
+|    Customer      |
++------------------+
+| - customerID     |
+| - name           |
+| - products: List<Product> |
++------------------+
+| + addProduct()   |
+| + getProducts()  |
+| + getTotalAmount()|
++------------------+
+        |
+        | Composition (owns multiple)
+        v
++------------------+
+|     Product      |
++------------------+
+| - productID      |
+| - name          |
+| - price         |
+| - quantity      |
++------------------+
+| + getTotalPrice() |
+| + getDetails()  |
++------------------+
+
+        |
+        | Uses
+        v
++----------------------+
+|   BillGenerator     |
++----------------------+
+| + generateBill()    |
+| + calculateTotal()  |
++----------------------+
+
+
+---Object diagram---
+
+| customerID = 001    |
+| products = {Apples, Milk} |
++----------------------+
+        |
+        | Owns (Composition)
+        v
++----------------------+
+| Product: Apples     |
+| productID = 101     |
+| name = "Apples"     |
+| price = $3/kg       |
+| quantity = 2 kg     |
+| totalPrice = $6     |
++----------------------+
+
++----------------------+
+| Product: Milk       |
+| productID = 102     |
+| name = "Milk"       |
+| price = $2/liter    |
+| quantity = 1 liter  |
+| totalPrice = $2     |
++----------------------+
+
+        |
+        | Uses
+        v
++----------------------------+
+|    BillGenerator          |
+| Total Amount = $8         |
++----------------------------+
+
+
+
+
+---Sequence diagram---
+
+Customer       Customer Object       Product Objects       BillGenerator  
+   |                 |                     |                      |  
+   |--- checkout() --->|                     |                      |  
+   |                 |--- getProducts() --->|                      |  
+   |                 |<--- return products -|                      |  
+   |                 |-----------------------> calculateTotal() --->|  
+   |                 |<--- totalAmount -------|  
+   |<-- displayBill() --|
+
+
